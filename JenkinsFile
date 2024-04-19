@@ -25,7 +25,10 @@ pipeline
             {
                 success 
                 {
-                    emailext(attachLog: true, body: 'Unit and Integration tests are passed successfully', subject: 'Test Stage Success', to: 'ranasinghe.kush@gmail.com')
+                    mail to: "ranasinghe.kush@gmail.com",
+                    body: 'Unit and Integration Testing was successful',
+                    subject: 'Unit and Integration Testing Status Email'
+                   
                 }
                
             }
@@ -52,7 +55,9 @@ pipeline
             {
                 success 
                 {
-                    emailext(attachLog: true, body: 'Security scan completed successfully', subject: 'Security Scan Success', to: 'ranasinghe.kush@gmail.com')
+                    mail to: "ranasinghe.kush@gmail.com",
+                    body: 'Security Scan was successful',
+                    subject: 'Security Scan Status Email'
                 }
                 
             }
@@ -80,14 +85,6 @@ pipeline
             {
                 echo "Deploy the application to a production server"
                 echo "Tool : AWS CodeDeploy"
-            }
-        }
-        stage('Testing only') 
-        {
-            steps 
-            {
-                echo "Testing only"
-                echo "Tool : ATesting"
             }
         }
     }
