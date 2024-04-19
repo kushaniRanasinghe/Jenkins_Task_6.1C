@@ -82,5 +82,13 @@ pipeline
                 echo "Tool : AWS CodeDeploy"
             }
         }
+        stage('Testing only') 
+        {
+            steps 
+            {
+                echo "Testing only"
+                echo "Tool : ATesting"
+            }
+        }
     }
 }
