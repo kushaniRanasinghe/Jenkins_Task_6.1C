@@ -25,7 +25,7 @@ pipeline
             {
                 success 
                 {
-                     emailext(attachLog: true, body: 'Unit and Integration tests are passed successfully', subject: 'Test Stage Success', to: 'ranasinghe.kush@gmail.com')
+                     emailext(attachLog: true, body: 'Unit and Integration tests are passed successfully', subject: 'Test Stage Success', to: 'kushani.raki@gmail.com')
                    
                 }
                
@@ -53,9 +53,7 @@ pipeline
             {
                 success 
                 {
-                    mail to: "ranasinghe.kush@gmail.com",
-                    body: 'Security Scan was successful',
-                    subject: 'Security Scan Status Email'
+                    emailext(attachLog: true, body: 'Security Scan was successful', subject: 'Security Scan Status Email', to: 'kushani.raki@gmail.com')
                 }
                 
             }
