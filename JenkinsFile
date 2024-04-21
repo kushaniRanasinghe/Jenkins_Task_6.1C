@@ -20,9 +20,20 @@ pipeline
                 echo "Unit tests are run to verify the functionality of individual components and integration tests check how these components work together"
                 echo "Tool : Unit Test - JUnit or NUnit"
                 echo "Tool : Integration Tests - Selenium or Postman"
-                emailext(attachLog: true, body: 'Unit and Integration tests are passed successfully', subject: 'Test Stage Success', to: 'ranasinghe.kush@gmail.com')
+                
             }
-
+            post
+            {
+                success
+                {
+                    emailext(attachLog: true, body: 'Unit and Integration tests are successful', subject: 'Test Stage Success', to: 'ranasinghe.kush@gmail.com')
+                }
+                failure 
+                {
+                    emailext(attachLog: true, body: 'Unit and Integration tests are failed. Please check logs for more details', subject: 'Test Stage Failure', to: 'ranasinghe.kush@gmail.com')
+                }
+            }
+            
         }
         
         stage('Code Analysis') 
@@ -40,7 +51,18 @@ pipeline
             {
                 echo "Perform a security scan on the code to identify any vulnerabilities "
                 echo "Tool : OWASP Dependency Check"
-                emailext(attachLog: true, body: 'Security Scan was successful', subject: 'Security Scan Status Email', to: 'ranasinghe.kush@gmail.com')
+               
+            }
+             post
+            {
+                success
+                {
+                     emailext(attachLog: true, body: 'Security Scan is successful', subject: 'Security Scan Success', to: 'ranasinghe.kush@gmail.com')
+                }
+                failure 
+                {
+                    emailext(attachLog: true, body: 'Security vulnerabilities found. Please check logs for more details', subject: 'Security Scan Failure', to: 'ranasinghe.kush@gmail.com')
+                }
             }
         }
         
