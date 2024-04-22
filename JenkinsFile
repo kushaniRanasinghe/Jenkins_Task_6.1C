@@ -87,7 +87,6 @@ pipeline
             steps 
             {
                 echo "Deploy the application to a production server"
-                echo "Tool : AWS CodeDeploy"
             }
         }
     }
